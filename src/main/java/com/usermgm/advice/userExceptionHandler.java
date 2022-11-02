@@ -17,6 +17,8 @@ public class userExceptionHandler {
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	
+	
+	//handling exceptions of data validations
 	public Map<String,String> handleException(MethodArgumentNotValidException ex) {
 		
 		Map<String,String> errorMap=new HashMap<>();
@@ -32,11 +34,12 @@ public class userExceptionHandler {
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	@ExceptionHandler(globalException.class)
 	
+	//handling global exception raised in service layer
 	public Map<String,String> handleGlobalException(globalException gex){
 		
 		Map<String,String> errorMap=new HashMap<>();
 	
-		errorMap.put("Error",gex.getMessage());
+		errorMap.put("Exception ",gex.getMessage());
 			
 		return errorMap;
 	}

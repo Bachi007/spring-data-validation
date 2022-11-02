@@ -25,16 +25,20 @@ import com.usermgm.service.userService;
 @RequestMapping("/user")
 public class userController {
 
+	//dependency injection for service layer
 	@Autowired
 	private userService service;
 	
+	
+	//adding user to db
 	@PostMapping("/add")
 	public ResponseEntity<user> addUser(@RequestBody @Valid userDTO u1){
 	
 		return new ResponseEntity<>(service.addUser(u1),HttpStatus.OK);
 		
 	}
-	
+
+	//retriving all users from db
 	@GetMapping("/retrive")
 	public ResponseEntity<List<user>> getUser(){
 		
@@ -43,13 +47,15 @@ public class userController {
 		
 	}
 	
+	//deleting user from db
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<String> deleteUser(@PathVariable int id) {
+	public ResponseEntity<user> deleteUser(@PathVariable int id) throws globalException {
 			
 			return new ResponseEntity<>(service.deleteUser(id),HttpStatus.ACCEPTED);
 		
 		}
 	
+	//updating user details
 	@PutMapping("/update")
 	public ResponseEntity<user> updateUser(@RequestBody @Valid userDTO u1){
 	
@@ -57,7 +63,13 @@ public class userController {
 		
 	}
 
-
+	//retriving specific user details
+	@GetMapping("/{id}")
+	public ResponseEntity<user> getUser(@PathVariable int id) throws globalException{
+		return new ResponseEntity<>(service.getUser(id),HttpStatus.OK);
+	}
+	
+	
 
 }
 	
