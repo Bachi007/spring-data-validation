@@ -6,4 +6,6 @@ import com.usermgm.model.user;
 
 public interface userRepository extends JpaRepository<user,Integer> {
 
+
+	
 }

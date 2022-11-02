@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.usermgm.exception.globalException;
+
 @RestControllerAdvice
 public class userExceptionHandler {
 
@@ -25,6 +27,24 @@ public class userExceptionHandler {
 	
 		return errorMap;
 	}
+
+	
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	@ExceptionHandler(globalException.class)
+	
+	public Map<String,String> handleGlobalException(globalException gex){
+		
+		Map<String,String> errorMap=new HashMap<>();
+	
+		errorMap.put("Error",gex.getMessage());
+			
+		return errorMap;
+	}
+	
+	
+	
+	
+	
 	
 	
 }
