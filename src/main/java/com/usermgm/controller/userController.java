@@ -29,6 +29,13 @@ public class userController {
 	@Autowired
 	private userService service;
 	
+	@GetMapping("/hello")
+	public String helloUser(){
+		
+		
+		return "Hello welcome to swagger";
+		
+	}
 	
 	//adding user to db
 	@PostMapping("/add")
