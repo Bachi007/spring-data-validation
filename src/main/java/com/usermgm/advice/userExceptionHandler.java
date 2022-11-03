@@ -26,11 +26,8 @@ public class userExceptionHandler {
 		ex.getBindingResult().getFieldErrors().forEach(error->{
 			errorMap.put(error.getField(), error.getDefaultMessage());
 		});
-	
 		return errorMap;
 	}
-
-	
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	@ExceptionHandler(globalException.class)
 	
